@@ -1,22 +1,22 @@
 <template>
-  <div>
-    <TheHeader />
-    <TheSidebarHeader />
+    <TheHeader @open-mobile-sidebar="openMobileSidebar" />
     <TheSidebarSmall />
     <TheSidebar />
-    <TheSidebarMobile />
+    <TheSidebarMobile
+      :is-open="isMobileSidebarOpen"
+      @close="closeMobileSidebar"
+    />
     <TheCategories />
     <TheVideos />
-  </div>
-</template> 
+</template>
 
 <script>
-import TheHeader from './components/TheHeader.vue';
-import TheCategories from './components/TheCategories.vue';
-import TheSidebar from './components/TheSidebar.vue';
-import TheSidebarMobile from './components/TheSidebarMobile.vue';
-import TheSidebarSmall from './components/TheSidebarSmall.vue';
-import TheVideos from './components/TheVideos.vue';
+import TheHeader from "./components/TheHeader.vue";
+import TheCategories from "./components/TheCategories.vue";
+import TheSidebar from "./components/TheSidebar.vue";
+import TheSidebarMobile from "./components/TheSidebarMobile.vue";
+import TheSidebarSmall from "./components/TheSidebarSmall.vue";
+import TheVideos from "./components/TheVideos.vue";
 
 export default {
   components: {
@@ -25,7 +25,20 @@ export default {
     TheSidebar,
     TheSidebarMobile,
     TheSidebarSmall,
-    TheVideos
+    TheVideos,
   },
-}
+  data() {
+    return {
+      isMobileSidebarOpen: false,
+    };
+  },
+  methods: {
+    openMobileSidebar() {
+      this.isMobileSidebarOpen = true;
+    },
+    closeMobileSidebar() {
+      this.isMobileSidebarOpen = false;
+    },
+  },
+};
 </script>
